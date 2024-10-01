@@ -4,14 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbMyPortfolioNightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbMyPortfolioNightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6013: The table/view 'DbMyPortfolioNight.dbo.About' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="About">
-          <Property Name="AbutId" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" />
-        </EntityType>-->
+warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -32,14 +35,6 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.About' does not have a prim
           <Property Name="IsRead" Type="bit" />
           <Property Name="CategoryID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DbMyPortfolioNight.dbo.Education' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Education">
-          <Property Name="EducationID" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Experience">
           <Key>
             <PropertyRef Name="ExperienceId" />
@@ -95,14 +90,6 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.Education' does not have a 
           <Property Name="SkillName" Type="nvarchar" MaxLength="30" />
           <Property Name="Rate" Type="tinyint" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DbMyPortfolioNight.dbo.SocialMedia' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="SocialMedia">
-          <Property Name="SocialMediaId" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Url" Type="nvarchar" MaxLength="100" />
-          <Property Name="Icon" Type="nvarchar" MaxLength="250" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -135,13 +122,19 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.SocialMedia' does not have 
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Admin].[AdminId] AS [AdminId], 
+    [Admin].[UserName] AS [UserName], 
+    [Admin].[Password] AS [Password]
+    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Contact_Category" Association="Self.FK_Contact_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbMyPortfolioNightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,7 +251,16 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.SocialMedia' does not have 
             <End Role="Category" EntitySet="Category" />
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
+          <EntitySet Name="Admin" EntityType="DbMyPortfolioNightModel.Admin" />
         </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -356,6 +358,15 @@ warning 6013: The table/view 'DbMyPortfolioNight.dbo.SocialMedia' does not have 
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
