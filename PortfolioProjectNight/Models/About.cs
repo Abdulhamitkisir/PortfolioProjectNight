@@ -12,14 +12,9 @@ namespace PortfolioProjectNight.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Profile
+    public partial class About
     {
-        public int ProfileId { get; set; }
-        public Nullable<System.DateTime> Birddate { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Githup { get; set; }
-        public string Address { get; set; }
+        public int AbutId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }

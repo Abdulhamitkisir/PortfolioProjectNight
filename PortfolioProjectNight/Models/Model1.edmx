@@ -5,8 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DbMyPortfolioNightModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="AbutId" />
+          </Key>
+          <Property Name="AbutId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminId" />
@@ -35,6 +42,14 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <Property Name="IsRead" Type="bit" />
           <Property Name="CategoryID" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DbMyPortfolioNight.dbo.Education' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Education">
+          <Property Name="EducationID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="Experience">
           <Key>
             <PropertyRef Name="ExperienceId" />
@@ -72,6 +87,9 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <Property Name="Phone" Type="nvarchar" MaxLength="30" />
           <Property Name="Githup" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -89,7 +107,17 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <Property Name="SkillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SkillName" Type="nvarchar" MaxLength="30" />
           <Property Name="Rate" Type="tinyint" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DbMyPortfolioNight.dbo.SocialMedia' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SocialMedia">
+          <Property Name="SocialMediaId" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar" MaxLength="100" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="250" />
+        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -113,6 +141,8 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DbMyPortfolioNightModelStoreContainer">
+          <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Experience" EntityType="Self.Experience" Schema="dbo" store:Type="Tables" />
@@ -122,13 +152,6 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Admin].[AdminId] AS [AdminId], 
-    [Admin].[UserName] AS [UserName], 
-    [Admin].[Password] AS [Password]
-    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Contact_Category" Association="Self.FK_Contact_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Contact" EntitySet="Contact" />
@@ -197,6 +220,9 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Githup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -214,6 +240,8 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <Property Name="SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SkillName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Rate" Type="Byte" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -252,6 +280,7 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
           <EntitySet Name="Admin" EntityType="DbMyPortfolioNightModel.Admin" />
+          <EntitySet Name="About" EntityType="DbMyPortfolioNightModel.About" />
         </EntityContainer>
         <EntityType Name="Admin">
           <Key>
@@ -260,6 +289,15 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="AbutId" />
+          </Key>
+          <Property Name="AbutId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -322,6 +360,9 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <EntitySetMapping Name="Profile">
             <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Profile">
               <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="Birddate" ColumnName="Birddate" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -344,6 +385,8 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
           <EntitySetMapping Name="Skill">
             <EntityTypeMapping TypeName="DbMyPortfolioNightModel.Skill">
               <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
                 <ScalarProperty Name="SkillId" ColumnName="SkillId" />
                 <ScalarProperty Name="SkillName" ColumnName="SkillName" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
@@ -370,6 +413,16 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="About">
+            <EntityTypeMapping TypeName="DbMyPortfolioNightModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AbutId" ColumnName="AbutId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -384,7 +437,7 @@ warning 6002: The table/view 'DbMyPortfolioNight.dbo.Admin' does not have a prim
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
