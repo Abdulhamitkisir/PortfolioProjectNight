@@ -36,5 +36,8 @@ namespace PortfolioProjectNight.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<About> About { get; set; }
+        public virtual DbSet<Education> Education { get; set; }
+        public virtual DbSet<Intership> Intership { get; set; }
+        public virtual DbSet<SocialMedia> SocialMedia { get; set; }
     }
 }

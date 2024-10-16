@@ -1,4 +1,4 @@
-﻿
+﻿@model PortfolioProjectNight.Models.Education
 @{
     ViewBag.Title = "CreateEducation";
     Layout = "~/Views/Admin/Index.cshtml";
@@ -6,14 +6,21 @@
 
 <h2 class="mb-4">Yeni Egitim Bilgisi Girisi</h2>
 <form method="post">
-    <label>Baslik</label>
-    <input type="text" class="form-control">
+    <label>Okul Türü</label>
+    <select name="Title" class="form-control">
+        <option>Ilköğretım</option>
+        <option>Lise</option>
+        <option>Üniversite</option>
+        <option>Yüksek Lisans (Tezsiz)</option>
+        <option>Yüksek Lisans (Tezli)</option>
+        <option>Doktora</option>
+    </select>
     <br />
-    <label>Alt Baslik</label>
-    <input type="text" class="form-control">
+    <label>Okul Adi</label>
+    <input type="text" name="SubTitle" class="form-control">
     <br />
-    <label>Aciklama</label>
-    <textarea rows="4" class="form-control"></textarea>
+    <label>Bölüm</label>
+    <input name="Description" class="form-control"></input>
     <br />
     <button class="btn btn-info">Egitim Bilgisini Kaydet</button>
 </form>

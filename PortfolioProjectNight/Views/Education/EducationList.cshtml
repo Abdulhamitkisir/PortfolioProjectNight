@@ -1,39 +1,34 @@
-﻿
+﻿@model  List<PortfolioProjectNight.Models.Education>
 @{
     ViewBag.Title = "EducationList";
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<h2>EducationList</h2>
+<h2>Egitim Listesi ve Islemleri</h2>
 
 <table class="table table-bordered">
     <tr>
         <th>ID</th>
-        <th>Baslik</th>
-        <th>Alt Baslik</th>
+        <th>Okul Türü</th>
+        <th>Okuk Adi</th>
+        <th>Bölüm</th>
         <th>Sil</th>
         <th>Güncelle</th>
     </tr>
-    <tr>
-        <td>1</td>
-        <td>RTE Ünöversitesi</td>
-        <td>Bilgisayar Programciligi</td>
-        <td><a href="#" class="btn btn-danger">Sil</a></td>
-        <td><a href="#" class="btn btn-success">Güncelle</a></td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Düzce Ünöversitesi</td>
-        <td>Bilgisayar Programciligi</td>
-        <td><a href="#" class="btn btn-danger">Sil</a></td>
-        <td><a href="#" class="btn btn-success">Güncelle</a></td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>Firat Ünöversitesi</td>
-        <td>Elektrik Mühendisligi</td>
-        <td><a href="#" class="btn btn-danger">Sil</a></td>
-        <td><a href="#" class="btn btn-success">Güncelle</a></td>
-    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.EducationID</td>
+            <td>@item.Title</td>
+            <td>@item.SubTitle</td>
+            <td>@item.Description</td>
+            <td><a href="/Education/DeleteEducation/@item.EducationID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Education/UpdateEducation/@item.EducationID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+
+
 </table>
+<a href="/Education/CreateEducation" class="btn btn-info">Yeni Yetenek Girisi</a>
+
 

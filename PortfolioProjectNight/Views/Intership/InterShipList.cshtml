@@ -1,0 +1,32 @@
+﻿@model List<PortfolioProjectNight.Models.Intership>
+@{
+    ViewBag.Title = "InterShipList";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2>Staj Listesi ve Islemleri</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Tarih</th>
+        <th>Yer</th>
+        <th>Aciklama</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.IntershipID</td>
+            <td>@item.Date</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td><a href="/Intership/DeleteInterShip/@item.IntershipID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Intership/UpdateInterShip/@item.IntershipID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+
+
+</table>
+<a href="/Intership/CreateInterShip" class="btn btn-info">Yeni Yetenek Girisi</a>

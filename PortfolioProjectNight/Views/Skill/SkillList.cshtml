@@ -11,6 +11,8 @@
         <th>ID</th>
         <th>Baslik</th>
         <th>Deger</th>
+        <th>Icon</th>
+        <th>Durum</th>
         <th>Sil</th>  
         <th>Güncelle</th>
     </tr>
@@ -20,9 +22,20 @@
             <td>@item.SkillId</td>
             <td>@item.SkillName</td>
             <td>@item.Rate</td>
+            <td>@item.Icon</td>
+            @if(item.Status == false)
+            {
+                <td><a href="/Skill/ChangeSkillStatusTrue/@item.SkillId" class="btn btn-danger">Pasif</a></td>
+            }
+            else
+            {
+            <td><a href="/Skill/ChangeSkillStatusFalse/@item.SkillId" class="btn btn-success">Aktif</a></td>
+            }
+
+
             <td><a href="/Skill/DeleteSkill/@item.SkillId" class="btn btn-danger">Sil</a></td>
             <td><a href="/Skill/UpdateSkill/@item.SkillId" class="btn btn-success">Güncelle</a></td>
         </tr>
     }
 </table>
-<a href="++" class="btn btn-info">Yeni Yetenek Girisi</a>
+<a href="/Skill/CreateSkill" class="btn btn-info">Yeni Yetenek Girisi</a>

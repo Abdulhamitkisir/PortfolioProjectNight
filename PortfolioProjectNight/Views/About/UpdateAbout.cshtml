@@ -1,0 +1,22 @@
+﻿@model PortfolioProjectNight.Models.About
+@{
+    ViewBag.Title = "UpdateAbout";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2>Hakkimda Alani Güncelleme Ekrani</h2>
+
+<form method="post">
+    @Html.HiddenFor(x => x.AbutId)
+    <label>Yetenek Basligi</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br />
+    <label>Yetenek Degeri</label>
+    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    <br />
+    <br />
+    <label>Yetenek Icon</label>
+    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Güncelle</button>
+</form>

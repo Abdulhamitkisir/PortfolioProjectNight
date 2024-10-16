@@ -1,0 +1,20 @@
+﻿@model PortfolioProjectNight.Models.Intership
+@{
+    ViewBag.Title = "CreateInterShip";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2>Staj Ekleme Sayfasi</h2>
+
+<form method="post">
+    <label>Tarih</label>
+    <input name="Date" class="form-control"></input>
+    <br />
+    <label>Staj Yeri</label>
+    <input type="text" name="Title" class="form-control">
+    <br />
+    <label>Aciklama</label>
+    <input name="Description" class="form-control"></input>
+    <br />
+    <button class="btn btn-info">Staj Bilgisini Kaydet</button>
+</form>
