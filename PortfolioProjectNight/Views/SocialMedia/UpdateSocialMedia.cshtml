@@ -1,13 +1,14 @@
 ﻿@model PortfolioProjectNight.Models.SocialMedia
 @{
-    ViewBag.Title = "CreateSocialMedia";
+    ViewBag.Title = "UpdateSocialMedia";
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<h2>Yeni Sosyal Media Girisi</h2>
+<h2>UpdateSocialMedia</h2>
 
 <form method="post">
-       <label>Sosyal Media Adi</label>
+    @Html.HiddenFor(x => x.SocialMediaId)
+    <label>Sosyal Media Adi</label>
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
     <br />
     <label>URL</label>
@@ -19,10 +20,10 @@
         <option>True</option>
         <option>False</option>
     </select>
-    @*   @Html.TextBoxFor(x => x.Url, new { @class = "form-control" })*@
+ @*   @Html.TextBoxFor(x => x.Url, new { @class = "form-control" })*@
     <br />
     <label>Yetenek Icon</label>
     @Html.TextBoxFor(x => x.Icon, new { @class = "form-control" })
     <br />
-    <button class="btn btn-info">Kaydet</button>
+    <button class="btn btn-info">Güncelle</button>
 </form>

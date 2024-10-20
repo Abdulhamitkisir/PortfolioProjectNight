@@ -48,7 +48,8 @@ namespace PortfolioProjectNight.Controllers
             var values = context.Education.Find(education.EducationID);
             values.Title = education.Title;
             values.Description = education.Description;
-            values.SubTitle = education.SubTitle;           
+            values.SubTitle = education.SubTitle;    
+            values.Date= education.Date;
             context.SaveChanges();
             return RedirectToAction("EducationList");
         }

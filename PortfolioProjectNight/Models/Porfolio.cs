@@ -12,12 +12,11 @@ namespace PortfolioProjectNight.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Education
+    public partial class Porfolio
     {
-        public int EducationID { get; set; }
+        public int PortfolioId { get; set; }
         public string Title { get; set; }
-        public string SubTitle { get; set; }
+        public string ImageUrl { get; set; }
         public string Description { get; set; }
-        public string Date { get; set; }
     }
 }

@@ -1,0 +1,36 @@
+﻿@model List<PortfolioProjectNight.Models.Porfolio>
+@{
+    ViewBag.Title = "PortfolioList";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2 class="mb-4">Portfolyo Listesi ve İşlemleri</h2>
+
+
+
+<br />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>Resim</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.PortfolioId</th>
+            <td>@item.Title</td>
+            <td>@(item.Description != null && item.Description.Length > 30 ? item.Description.Substring(0, 30) : item.Description)</td>
+            <td>@(item.ImageUrl != null && item.ImageUrl.Length > 30 ? item.ImageUrl.Substring(0, 30) : item.ImageUrl)</td>
+            <td><a href="/Portfolio/DeletePortfolio/@item.PortfolioId" class="btn btn-danger">Sil</a></td>
+            <th> <a href="/Portfolio/UpdatePortfolio/@item.PortfolioId" class="btn btn-success">Güncelle</a></th>
+        </tr>
+    }
+</table>
+<a href="/Portfolio/CreatePortfolio/" class="btn btn-info">Yeni Portfolyo Ekleme</a>

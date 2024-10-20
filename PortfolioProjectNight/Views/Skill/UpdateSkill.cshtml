@@ -14,9 +14,17 @@
     <label>Yetenek Degeri</label>
     @Html.TextBoxFor(x => x.Rate, new { @class = "form-control" })
     <br />
+    <label>Status</label>
+    <select name="Status" class="form-control">
+        <option>True</option>
+        <option>False</option>
+    </select>
     <br />
     <label>Yetenek Icon</label>
     @Html.TextBoxFor(x => x.Icon, new { @class = "form-control" })
     <br />
     <button class="btn btn-info">Güncelle</button>
 </form>
+
+
+<i class="fa-regular fa-layer-group"></i>

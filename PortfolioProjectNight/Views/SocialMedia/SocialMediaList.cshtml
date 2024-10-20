@@ -13,7 +13,7 @@
         <th>Title</th>
         <th>URL</th>
         <th>ICON</th>
-        <th>Sil</th>
+        <th>Status</th>
         <th>Güncelle</th>
     </tr>
     @foreach (var item in Model)
@@ -23,12 +23,20 @@
             <td>@item.Title</td>
             <td>@item.Url</td>
             <td>@item.Icon</td>
-            <td><a href="/#/#/@item.SocialMediaId" class="btn btn-danger">Sil</a></td>
-            <td><a href="/#/#/@item.SocialMediaId" class="btn btn-success">Güncelle</a></td>
+            @if (item.Status == true)
+            {
+                <td><a href="/SocialMedia/ChangeSocialStatusFalse/@item.SocialMediaId" class="btn btn-success">Aktif</a></td>
+            }
+            else
+            {
+                <td><a href="/SocialMedia/ChangeSocialStatusTrue/@item.SocialMediaId" class="btn btn-danger">Pasif</a></td>
+            }
+
+            <td><a href="/SocialMedia/UpdateSocialMedia/@item.SocialMediaId" class="btn btn-success">Güncelle</a></td>
         </tr>
     }
 
 
 </table>
-<a href="/SocialMedia/SocialMediaList" class="btn btn-info">Yeni Yetenek Girisi</a>
+<a href="/SocialMedia/CreateSocialMedia" class="btn btn-info">Yeni Sosyal Medya Girisi</a>
 

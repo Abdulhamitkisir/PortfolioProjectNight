@@ -1,0 +1,28 @@
+﻿@model PortfolioProjectNight.Models.Testimonial
+@{
+    ViewBag.Title = "CreateTestimonial";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2 class="mb-4">Referan Ekleme Sayfası</h2>
+
+<form method="post">
+    @Html.HiddenFor(x => x.TestimonialId)
+
+    <label>İsim </label>
+    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
+    <br />
+    <label>Adres</label>
+    @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+    <br />
+    <label>Yorum</label>
+    @Html.TextAreaFor(x => x.Comment, new { @class = "form-control" })
+    <br />
+    <label>Fotoğraf Url'si</label>
+    @Html.TextBoxFor(x => x.FotoUrl, new { @class = "form-control" })
+    <br />
+    <label>Puan</label>
+    @Html.TextBoxFor(x => x.Point, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Referansı Ekle</button>
+</form>

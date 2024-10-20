@@ -39,5 +39,7 @@ namespace PortfolioProjectNight.Models
         public virtual DbSet<Education> Education { get; set; }
         public virtual DbSet<Intership> Intership { get; set; }
         public virtual DbSet<SocialMedia> SocialMedia { get; set; }
+        public virtual DbSet<Testimonial> Testimonial { get; set; }
+        public virtual DbSet<Porfolio> Porfolio { get; set; }
     }
 }

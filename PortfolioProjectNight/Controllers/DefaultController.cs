@@ -20,20 +20,21 @@ namespace PortfolioProjectNight.Controllers
                                                Value = x.CategoryID.ToString()
 
                                            }).ToList();
-            ViewBag.value=values;
-                                         
+            ViewBag.value = values;
+
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Contact contact) 
+        public ActionResult Index(Contact contact)
         {
             contact.SendDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            contact.IsRead=false;
+            contact.IsRead = false;
 
             context.Contact.Add(contact);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+  
         public PartialViewResult PartialHead()
         {
             return PartialView();
@@ -66,18 +67,37 @@ namespace PortfolioProjectNight.Controllers
             return PartialView(values);
         }
         public PartialViewResult PartialExperience()
-        { 
+        {
             var values = context.Experience.ToList();
             return PartialView(values);
         }
-        public PartialViewResult PartialSkill() 
+        public PartialViewResult PartialSkill()
         {
-            var values=context.Skill.Where(x=> x.Status==true).ToList();
+            var values = context.Skill.Where(x => x.Status == true).ToList();
             return PartialView(values);
         }
-        public PartialViewResult PartialFooter() 
+        public PartialViewResult PartialFooter()
         {
             return PartialView();
+        }
+        public PartialViewResult PartialEducation()
+        {
+            var values = context.Education.ToList();
+            return PartialView(values);
+        }
+        public PartialViewResult PartialTestimonial()
+        {
+            var values = context.Testimonial.ToList();
+            return PartialView(values);
+        }
+        public PartialViewResult PartialContact()
+        {
+            return PartialView();
+        }
+        public PartialViewResult PartialPortfolio()
+        {
+            var values=context.Porfolio.ToList();
+            return PartialView(values);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿@model List<PortfolioProjectNight.Models.Skill>
+﻿@*@model PagedList<PortfolioProjectNight.Models.Skill>*@
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<PortfolioProjectNight.Models.Skill>
 @{
     ViewBag.Title = "SkillList";
     Layout = "~/Views/Admin/Index.cshtml";
@@ -13,23 +16,23 @@
         <th>Deger</th>
         <th>Icon</th>
         <th>Durum</th>
-        <th>Sil</th>  
+        <th>Sil</th>
         <th>Güncelle</th>
     </tr>
-    @foreach(var item in Model)
-    { 
+    @foreach (var item in Model)
+    {
         <tr>
             <td>@item.SkillId</td>
             <td>@item.SkillName</td>
             <td>@item.Rate</td>
             <td>@item.Icon</td>
-            @if(item.Status == false)
+            @if (item.Status == false)
             {
                 <td><a href="/Skill/ChangeSkillStatusTrue/@item.SkillId" class="btn btn-danger">Pasif</a></td>
             }
             else
             {
-            <td><a href="/Skill/ChangeSkillStatusFalse/@item.SkillId" class="btn btn-success">Aktif</a></td>
+                <td><a href="/Skill/ChangeSkillStatusFalse/@item.SkillId" class="btn btn-success">Aktif</a></td>
             }
 
 
@@ -37,5 +40,12 @@
             <td><a href="/Skill/UpdateSkill/@item.SkillId" class="btn btn-success">Güncelle</a></td>
         </tr>
     }
+
 </table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("SkillList", new { page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    { "page-link"}
+})
+
 <a href="/Skill/CreateSkill" class="btn btn-info">Yeni Yetenek Girisi</a>

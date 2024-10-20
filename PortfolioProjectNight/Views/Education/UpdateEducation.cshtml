@@ -9,13 +9,25 @@
 <form method="post">
     @Html.HiddenFor(x => x.EducationID)
     <label>Okul Türü</label>
-    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <select name="Title" class="form-control">
+        <option value="" disabled selected>Lütfen Secim Yapiniz</option>
+        <option>Ilköğretım</option>
+        <option>Lise</option>
+        <option>Üniversite</option>
+        <option>Yüksek Lisans (Tezsiz)</option>
+        <option>Yüksek Lisans (Tezli)</option>
+        <option>Doktora</option>
+    </select>
+    @*  @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })*@
     <br />
     <label>Okul Adi</label>
     @Html.TextBoxFor(x => x.SubTitle, new { @class = "form-control" })
     <br />
     <label>Deneyim Aciklamasi</label>
     @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+    <br />
+    <label>Baslama ve Bitirme Yili</label>
+    @Html.TextAreaFor(x => x.Date, new { @class = "form-control" })
     <br />
     <button class="btn btn-info">Egitimi Güncelle</button>
 </form>

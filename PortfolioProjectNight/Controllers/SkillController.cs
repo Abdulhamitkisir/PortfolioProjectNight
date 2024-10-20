@@ -6,16 +6,16 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using PortfolioProjectNight.Models;
 using System.Data.Entity.Migrations;
-
+using PagedList;
 namespace PortfolioProjectNight.Controllers
 {
     public class SkillController : Controller
     {
         // GET: Skill
         DbMyPortfolioNightEntities context = new DbMyPortfolioNightEntities();
-        public ActionResult SkillList()
+        public ActionResult SkillList(int page=1)
         {
-            var values = context.Skill.ToList();
+            var values = context.Skill.ToList().ToPagedList(page, 5);
             return View(values);
 
         }
@@ -71,5 +71,6 @@ namespace PortfolioProjectNight.Controllers
             context.SaveChanges();
             return RedirectToAction("SkillList");
         }
+       
     }
 }
